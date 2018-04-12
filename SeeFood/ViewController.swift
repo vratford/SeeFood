@@ -12,7 +12,11 @@ import Vision
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+
+    
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var firstguess: UITextField!
     
     let imagePicker = UIImagePickerController()
     
@@ -58,13 +62,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //            print(results)
             
             if let firstResult = results.first {
-                if firstResult.identifier.contains("hotdog") {
-                    self.navigationItem.title = "Hotdog!"
-                } else {
-                    self.navigationItem.title = "Not Hotdog!"
+                
+                switch firstResult.identifier {
+                    case "hotdog, hot dog, red hot":
+                        self.navigationItem.title = "Hotdog!"
+                case "orange":
+                    self.navigationItem.title = "Orange!"
+                case "lemon":
+                    self.navigationItem.title = "Lemon"
+                case "pasta":
+                        self.navigationItem.title = "Pasta!"
+                case "paper towel":
+                    self.navigationItem.title = "Paper Towel!"
+                    default:
+                        self.navigationItem.title = "My First Guess!"
+                    self.firstguess.text = "\(firstResult.identifier) @ \(round(firstResult.confidence*1000) / 10)%"
                 }
+ 
             }
-            
+        
         }
         
         let handler = VNImageRequestHandler(ciImage: image)
@@ -76,6 +92,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             print(error)
         }
         
+
     }
     
     @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
