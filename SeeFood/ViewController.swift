@@ -25,7 +25,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
       
         imagePicker.delegate = self
         imagePicker.sourceType = .camera // use .photolibrary with simulator and .camera with device
-        imagePicker.allowsEditing = false // make true if you want to allow editing, ie: cropping image for classification
+        imagePicker.allowsEditing = true     // make true if you want to allow editing, ie: cropping image for classification
         
         
         
