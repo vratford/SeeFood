@@ -62,10 +62,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //            print(results)
             
             if let firstResult = results.first {
-                
+            
                 switch firstResult.identifier {
-                    case "hotdog, hot dog, red hot":
+                case "hotdog, hot dog, red hot":
+                    DispatchQueue.main.async {
                         self.navigationItem.title = "Hotdog!"
+                        self.navigationController?.navigationBar.barTintColor = UIColor.green
+                        self.navigationController?.navigationBar.isTranslucent = false
+                    }
                 case "orange":
                     self.navigationItem.title = "Orange!"
                 case "lemon":
@@ -79,6 +83,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     self.firstguess.text = "\(firstResult.identifier) @ \(round(firstResult.confidence*1000) / 10)%"
                 }
  
+                self.navigationController?.navigationBar.barTintColor = UIColor.white
             }
         
         }
